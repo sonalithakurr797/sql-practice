@@ -1,0 +1,4 @@
+select distinct(fb.post_id),fb.poster,fb.post_text,fb.post_keywords,fb.post_date from facebook_posts as fb
+join facebook_reactions as fr 
+on fr.post_id = fb.post_id
+where fr.reaction = 'heart'
