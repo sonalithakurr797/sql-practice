@@ -1,0 +1,7 @@
+select user_id,spend,transaction_date
+FROM
+(select user_id,spend,transaction_date,
+row_number() over (partition by user_id
+ORDER BY transaction_date) as rn 
+from transactions) as t
+where rn = 3
