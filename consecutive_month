@@ -1,0 +1,8 @@
+SELECT DISTINCT customer_id
+FROM (
+SELECT customer_id,order_date,
+LAG(order_date) OVER (PARTITION BY customer_id
+ORDER BY order_date
+) AS previous_date) AS x
+WHERE DATE_TRUNC('month', order_date)
+= DATE_TRUNC('month', previous_date) + INTERVAL '1 month';
