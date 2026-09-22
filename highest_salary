@@ -1,0 +1,9 @@
+SELECT *
+FROM (
+    SELECT *,
+           DENSE_RANK() OVER (
+               ORDER BY salary DESC
+           ) AS ranking
+    FROM employees
+) t
+WHERE ranking = 2;
