@@ -1,0 +1,5 @@
+with duplicate_companies as 
+(SELECT company_id from job_listings
+group by company_id
+having count(company_id) > 1)
+SELECT count(duplicate_companies) from duplicate_companies
